@@ -5,23 +5,18 @@ export const RandomQuote = () => {
 
     useEffect(() => {
         async function fetchQuote() {
-            fetch("https://usu-quotes-mimic.vercel.app/api/random")
-            .then(response => {
-            if (response.ok) {
-                return response.json()
-            }
-            throw new Error("unable to fetch a random quote")
-            })
-            .then(quote => setQuote(quote))
-            .catch(err => console.log(err))
+            const apiCall = await fetch("https://usu-quotes-mimic.vercel.app/api/random");
+            const jsonData = await apiCall.json();
+            console.log(jsonData);
+            setQuote(jsonData);
         }
         fetchQuote();
     }, [])
 
     return (
-        <div> 
-            <p className="text">{quote ? quote.content : 'Loading Quote...'}</p>
-            <p className="text">-{quote ? quote.author : 'Unknown Author'}</p>
+        <div className="textFont"> 
+            <p>{quote ? quote.content : "Loading Quote..."}</p>
+            <p>-{quote ? quote.author : "Unknown Author"}</p>
         </div>
     )
 }
