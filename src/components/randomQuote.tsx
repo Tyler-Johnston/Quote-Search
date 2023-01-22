@@ -6,9 +6,9 @@ export const RandomQuote = () => {
     useEffect(() => {
         async function fetchQuote() {
             fetch("https://usu-quotes-mimic.vercel.app/api/random")
-            .then(res => {
-            if (res.ok) {
-                return res.json()
+            .then(response => {
+            if (response.ok) {
+                return response.json()
             }
             throw new Error("unable to fetch a random quote")
             })
