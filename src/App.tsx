@@ -1,24 +1,24 @@
 import { useState } from 'react'
-import { Main } from './pages/main';
-import { Other } from './pages/other';
+import { RandomQuote } from './components/randomQuote';
 
 function App() {
-  const [pageName, setPageName] = useState("main");
   const [userInput, setUserInput] = useState("");
+  const [isUIShifted, setIsUIShifted] = useState(false);
 
   function handleKeyDown(event) {
     if (event.key === 'Enter') {
       setUserInput(event.target.value);
-      setPageName("other");
+      setIsUIShifted(true);
     }
   }
 
   return (
-    <div>
+    <div className={isUIShifted ? '' : 'center'}>
+
       <h1>Quote Search</h1>
       <input placeholder="Albert Einstein" onKeyDown={handleKeyDown}/>
-        {pageName === "main" && <Main/>}
-        {pageName === "other" && <Other/>}
+      {isUIShifted ? null : <RandomQuote/>}
+
     </div>
   )
 }

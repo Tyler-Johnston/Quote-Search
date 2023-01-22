@@ -17,7 +17,14 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  top: 35%;
 }
+
+/* .shifted {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+} */
 
 .searchInput {
   border-radius: 10px;
