@@ -1,15 +1,20 @@
 import { useState, useEffect } from "react"
 
-export const RandomQuote = () => {
-    const [quote, setQuote] = useState(null);
+interface Quote {
+    _id: string;
+    content: string;
+    author: string;
+}
 
+export const RandomQuote = () => {
+    const [quote, setQuote] = useState<Quote | null>(null);
+
+    async function fetchQuote() {
+        const apiCall = await fetch("https://usu-quotes-mimic.vercel.app/api/random");
+        setQuote(await apiCall.json());
+    }
+    
     useEffect(() => {
-        async function fetchQuote() {
-            const apiCall = await fetch("https://usu-quotes-mimic.vercel.app/api/random");
-            const jsonData = await apiCall.json();
-            console.log(jsonData);
-            setQuote(jsonData);
-        }
         fetchQuote();
     }, [])
 
