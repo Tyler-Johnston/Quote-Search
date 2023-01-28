@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react"
 
 interface Quote {
-    _id: string;
-    content: string;
+    id: number;
     author: string;
+    content: string;
+    results: Quote[];
 }
 
 export const SpecificQuotes = ({author}: Quote) => {
@@ -19,11 +20,10 @@ export const SpecificQuotes = ({author}: Quote) => {
         fetchQuotes();
     }, [author])
 
-    //TODO: fix 'quote' and 'index' having 'implicit any type'. needs to be strictly typed
     return (
         <div> 
-        {data ? data.results.map((quote, index) => (
-            <div className="quoteBox textFont" key={index}>
+        {data ? data.results.map((quote: Quote) => (
+            <div className="quoteBox textFont" key={quote.id}>
                 <p>{quote.content}</p>
                 <p>-{quote.author}</p>
             </div>

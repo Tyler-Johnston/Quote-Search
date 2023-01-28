@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react"
 
 interface Quote {
-    _id: string;
-    content: string;
     author: string;
+    content: string;
 }
 
 export const RandomQuote = () => {
