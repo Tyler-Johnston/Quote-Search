@@ -9,8 +9,8 @@ export const RandomQuote = () => {
     const [quote, setQuote] = useState<Quote | null>(null);
 
     async function fetchQuote() {
-        const apiCall = await fetch("https://usu-quotes-mimic.vercel.app/api/random");
-        setQuote(await apiCall.json());
+        const randomQuote = await fetch("https://usu-quotes-mimic.vercel.app/api/random");
+        setQuote(await randomQuote.json());
     }
     
     useEffect(() => {
@@ -18,7 +18,7 @@ export const RandomQuote = () => {
     }, [])
 
     return (
-        <div className="textFont"> 
+        <div className="textFont">
             <p>{quote ? quote.content : "Loading Quote..."}</p>
             <p>-{quote ? quote.author : "Unknown Author"}</p>
         </div>

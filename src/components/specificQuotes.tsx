@@ -8,11 +8,11 @@ interface Quote {
 }
 
 export const SpecificQuotes = ({author}: Quote) => {
-    const [data, setData] = useState<Quote | null>(null);
+    const [quotes, setQuotes] = useState<Quote | null>(null);
 
     async function fetchQuotes() {
-        const apiCall = await fetch(`https://usu-quotes-mimic.vercel.app/api/search?query=${author}`);
-        setData(await apiCall.json());
+        const specificQuotes = await fetch(`https://usu-quotes-mimic.vercel.app/api/search?query=${author}`);
+        setQuotes(await specificQuotes.json());
     }
     
     // this should only make further requests to the API once the author prop changes
@@ -22,7 +22,7 @@ export const SpecificQuotes = ({author}: Quote) => {
 
     return (
         <div> 
-        {data ? data.results.map((quote: Quote) => (
+        {quotes ? quotes.results.map((quote: Quote) => (
             <div className="quoteBox textFont" key={quote.id}>
                 <p>{quote.content}</p>
                 <p>-{quote.author}</p>
